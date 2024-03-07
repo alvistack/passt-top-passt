@@ -121,7 +121,7 @@ passt.avx2: $(PASST_SRCS) $(HEADERS)
 passt.avx2: passt
 
 pasta.avx2 pasta.1 pasta: pasta%: passt%
-	ln -sf $< $@
+	cp -rfp $< $@
 
 qrap: $(QRAP_SRCS) passt.h
 	$(CC) $(FLAGS) $(CFLAGS) $(CPPFLAGS) $(QRAP_SRCS) -o qrap $(LDFLAGS)
