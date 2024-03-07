@@ -44,6 +44,10 @@
  */
 #define NLBUFSIZ 65536
 
+#ifndef NLM_F_DUMP_FILTERED
+#define NLM_F_DUMP_FILTERED 0x20
+#endif
+
 /* Socket in init, in target namespace, sequence (just needs to be monotonic) */
 int nl_sock	= -1;
 int nl_sock_ns	= -1;
