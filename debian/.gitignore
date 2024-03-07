@@ -1,0 +1,8 @@
+*.substvars
+*debhelper*
+.debhelper
+autoreconf.*
+files
+passt
+passt-apparmor
+tmp
