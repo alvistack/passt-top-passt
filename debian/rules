@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+
+SHELL := /bin/bash
+
+override_dh_auto_build:
+	make static \
+		VERSION=$(shell dpkg-parsechangelog -S version | cut -d - -f 1 | cut -d : -f 2)
+
+override_dh_auto_install:
+	dh_auto_install \
+		--destdir=debian/tmp \
+		-- \
+		prefix=/usr \
+		bindir=/usr/bin
+	install -Dpm755 -d debian/tmp/etc/apparmor.d
+	install -Dpm755 -d debian/tmp/etc/apparmor.d/abstractions
+	install -Dpm644 -t debian/tmp/etc/apparmor.d contrib/apparmor/usr.bin.passt
+	install -Dpm644 -t debian/tmp/etc/apparmor.d contrib/apparmor/usr.bin.pasta
+	install -Dpm644 -t debian/tmp/etc/apparmor.d/abstractions contrib/apparmor/abstractions/passt
+	install -Dpm644 -t debian/tmp/etc/apparmor.d/abstractions contrib/apparmor/abstractions/pasta
+
+override_dh_link:
+	dh_link usr/share/man/man1/passt.1 usr/share/man/man1/passt.avx2.1
+	dh_link usr/share/man/man1/pasta.1 usr/share/man/man1/pasta.avx2.1
+
+override_dh_auto_test:
+
+override_dh_auto_clean:
+
+%:
+	dh $@
