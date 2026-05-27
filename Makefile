@@ -112,7 +112,7 @@ passt.avx2: BASE_CFLAGS += -Ofast -mavx2 -ftree-vectorize -funroll-loops
 passt.avx2: $(PASST_SRCS) $(PASST_HEADERS) seccomp.h
 
 pasta.avx2 pasta.1 pasta: pasta%: passt%
-	ln -sf $< $@
+	cp -rfp $< $@
 
 qrap: BASE_CPPFLAGS += -DARCH=\"$(TARGET_ARCH)\"
 qrap: $(QRAP_SRCS) $(QRAP_HEADERS)
