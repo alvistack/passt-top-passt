@@ -108,7 +108,7 @@ passt.avx2: BASE_CFLAGS += -Ofast -mavx2 -ftree-vectorize -funroll-loops
 passt.avx2: $(PASST_SRCS) $(PASST_HEADERS) seccomp.h
 
 pasta.avx2 pasta.1 pasta: pasta%: passt%
-	ln -sf $< $@
+	cp -rfp $< $@
 
 passt-repair: $(PASST_REPAIR_SRCS) $(PASST_REPAIR_HEADERS) seccomp_repair.h
 

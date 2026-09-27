@@ -1,0 +1,3 @@
+etc/apparmor.d/*
+usr/bin/*
+usr/share/man/*
